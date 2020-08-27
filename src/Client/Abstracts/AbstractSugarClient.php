@@ -25,7 +25,7 @@ use SugarAPI\SDK\Endpoint\Interfaces\EPInterface;
  * @method EPInterface oauth2Refresh()
  * @method EPInterface createRecord(string $module = '')
  * @method EPInterface filterRecords(string $module = '')
- * @method EPInterface attachFile(string $module = '',string $record_id = '')
+ * @method EPInterface attachFile(string $module = '',string $record_id = '', string $fieldName = 'filename')
  * @method EPInterface oauth2Logout()
  * @method EPInterface createRelated(string $module = '',string $record_id = '',string $relationship = '')
  * @method @deprecated EPInterface linkRecords(string $module = '',string $record_id = '',string $relationship = '',string $related_id = '')

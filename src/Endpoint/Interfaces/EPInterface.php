@@ -60,9 +60,10 @@ interface EPInterface
 
     /**
      * Execute the Endpoint Object
+     * @param array|null $options
      * @return self
      */
-    public function execute();
+    public function execute(?array $options = null);
 
 
     /**

@@ -118,7 +118,6 @@ abstract class AbstractEndpoint implements EPInterface
 
     /**
      * @inheritdoc
-     * @throws RequiredDataException - When passed in data contains issues
      */
     public function setData($data)
     {
@@ -166,7 +165,7 @@ abstract class AbstractEndpoint implements EPInterface
     /**
      * @inheritdoc
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return $this->Options;
     }
@@ -182,7 +181,7 @@ abstract class AbstractEndpoint implements EPInterface
     /**
      * @inheritdoc
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->Url;
     }
@@ -190,7 +189,7 @@ abstract class AbstractEndpoint implements EPInterface
     /**
      * @inheritdoc
      */
-    public function getResponse()
+    public function getResponse(): ResponseInterface
     {
         return $this->Response;
     }
@@ -198,7 +197,7 @@ abstract class AbstractEndpoint implements EPInterface
     /**
      * @inheritdoc
      */
-    public function getRequest()
+    public function getRequest(): RequestInterface
     {
         return $this->Request;
     }
@@ -208,18 +207,18 @@ abstract class AbstractEndpoint implements EPInterface
      * @param null $data - short form data for Endpoint, which is configure by configureData method
      * @return $this
      * @throws InvalidRequestException
-     * @throws InvalidURLException
+     * @throws InvalidURLException|RequiredDataException
      */
-    public function execute($data = null)
+    public function execute(?array $data = null)
     {
-        $data =  ($data === null ? $this->Data : $data);
+        $data =  ($data ?? $this->Data);
         $this->configureData($data);
         if (is_object($this->Request)) {
             $this->configureRequest();
             $this->Request->send();
             $this->configureResponse();
         } else {
-            throw new InvalidRequestException(get_called_class(), "Request property not configured");
+            throw new InvalidRequestException(static::class, "Request property not configured");
         }
         return $this;
     }
@@ -227,7 +226,7 @@ abstract class AbstractEndpoint implements EPInterface
     /**
      * @inheritdoc
      */
-    public function authRequired()
+    public function authRequired() :bool
     {
         return $this->_AUTH_REQUIRED;
     }
