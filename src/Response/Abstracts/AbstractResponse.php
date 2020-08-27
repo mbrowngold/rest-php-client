@@ -95,7 +95,7 @@ abstract class AbstractResponse implements ResponseInterface
     }
 
     /**
-     * @inheritdoc
+     * @return string
      */
     public function getBody()
     {

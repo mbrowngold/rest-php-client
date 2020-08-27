@@ -22,7 +22,7 @@ interface ResponseInterface
 
     /**
      * Get the Response Body
-     * @return string
+     * @return string|array|\stdClass
      */
     public function getBody();
 

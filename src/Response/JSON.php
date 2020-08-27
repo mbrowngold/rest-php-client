@@ -18,7 +18,8 @@ class JSON extends AbstractResponse
     }
 
     /**
-     * @inheritdoc
+     * @param bool $asArray
+     * @return array|\stdClass
      */
     public function getBody($asArray = true)
     {
