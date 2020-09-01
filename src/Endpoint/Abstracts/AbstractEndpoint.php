@@ -204,15 +204,15 @@ abstract class AbstractEndpoint implements EPInterface
 
     /**
      * @inheritdoc
-     * @param null $data - short form data for Endpoint, which is configure by configureData method
+     * @param null $options - short form data for Endpoint, which is configure by configureData method
      * @return $this
      * @throws InvalidRequestException
      * @throws InvalidURLException|RequiredDataException
      */
-    public function execute(?array $data = null)
+    public function execute($options = null)
     {
-        $data =  ($data ?? $this->Data);
-        $this->configureData($data);
+        $options =  ($options ?? $this->Data);
+        $this->configureData($options);
         if (is_object($this->Request)) {
             $this->configureRequest();
             $this->Request->send();
